@@ -37,15 +37,16 @@ button{cursor:pointer}
   margin-bottom:46px;
 }
 .brand{
-  font-family:Georgia,serif;
-  font-size:32px;
-  font-weight:bold;
-  letter-spacing:-1.2px;
-  white-space:nowrap;
+  display:flex;
+  align-items:center;
+  flex-shrink:0;
 }
-.brand em{
-  color:var(--lime);
-  font-weight:normal;
+.brand img{
+  display:block;
+  width:230px;
+  max-width:42vw;
+  height:auto;
+  object-fit:contain;
 }
 .destination,.ghost{
   background:#151e2a;
@@ -276,7 +277,7 @@ h1{
 @media(max-width:760px){
   .shell{padding:20px 17px 110px}
   .top{margin-bottom:42px;align-items:flex-start}
-  .brand{font-size:27px}
+  .brand img{width:185px;max-width:55vw}
   .destination{padding:8px 10px;font-size:0}
   .destination span:not(.tg){display:none}
   .destination .tg{width:31px;height:31px;font-size:16px}
@@ -304,7 +305,7 @@ h1{
 <main class="shell">
 
 <header class="top">
-  <div class="brand">Game <em>of</em> Markets</div>
+  <div class="brand"><img src="gom-logo.png" alt="Game of Markets"></div>
 
   <button class="destination" id="settingsBtn" title="Settings">
     <span class="tg">➤</span>
@@ -565,7 +566,7 @@ h1{
 
   <div class="actions">
     <button class="primary" id="reviewBtn">
-      Review &amp; publish →
+      Send to Telegram →
     </button>
   </div>
 
@@ -641,34 +642,6 @@ Do not use this setup on a shared device.
 </div>
 
 
-<!-- REVIEW MODAL -->
-<div
-  class="modal-backdrop"
-  id="reviewModal"
-  role="dialog"
-  aria-modal="true"
->
-
-<div class="modal">
-
-<h2>Review your post</h2>
-
-<p>
-Check the instrument, action, entry, targets and stop loss before sharing.
-</p>
-
-<div class="review-text" id="reviewText"></div>
-
-<p class="status" id="reviewStatus"></p>
-
-<div class="row">
-  <button class="secondary close">Back to edit</button>
-  <button class="secondary" id="copyReview">Copy</button>
-  <button class="primary" id="sendReview">Send to Telegram</button>
-</div>
-
-</div>
-</div>
 
 
 <script>
@@ -903,7 +876,7 @@ function message() {
   const fullDisclaimer =
     disclaimerUrl
       ? `Full disclaimer:\n${disclaimerUrl}`
-      : 'Full disclaimer: [Add public GitHub link in Settings]';
+      : 'Full disclaimer: [Add public disclaimer URL in Settings]';
 
 
   return [
@@ -929,7 +902,6 @@ function render() {
   const text = message();
 
   $('preview').textContent = text;
-  $('reviewText').textContent = text;
 
 }
 
@@ -1001,7 +973,7 @@ function valid() {
   else if (!disclaimerUrl) {
 
     error =
-      'Add your public GitHub disclaimer URL in Settings.';
+      'Add your public disclaimer URL in Settings.';
 
   }
 
@@ -1127,7 +1099,7 @@ if (url.protocol !== 'https:') {
   } catch (e) {
 
     $('settingsError').textContent =
-      'Check the channel (@username or numeric ID), bot token, and public HTTPS GitHub URL.';
+      'Check the channel (@username or numeric ID), bot token, and public HTTPS disclaimer URL.';
 
   }
 
@@ -1135,20 +1107,11 @@ if (url.protocol !== 'https:') {
 
 
 // ==========================================
-// REVIEW
+// DIRECT SEND BUTTON
 // ==========================================
 
 $('reviewBtn').onclick = () => {
-
-  if (!valid()) return;
-
-  render();
-
-  $('reviewStatus').textContent =
-    'Ready to send. Check all trade details once more.';
-
-  $('reviewModal').classList.add('open');
-
+  sendToTelegram($('reviewBtn'));
 };
 
 
@@ -1167,8 +1130,7 @@ async function copy() {
     $('copyBtn').textContent =
       'Copied ✓';
 
-    $('reviewStatus').textContent =
-      'Copied to clipboard.';
+
 
     setTimeout(() => {
 
@@ -1179,7 +1141,7 @@ async function copy() {
 
   } catch {
 
-    $('reviewStatus').textContent =
+    $('validation').textContent =
       'Clipboard unavailable. Select and copy the preview text.';
 
   }
@@ -1187,19 +1149,16 @@ async function copy() {
 }
 
 $('copyBtn').onclick = copy;
-$('copyReview').onclick = copy;
 
 
 // ==========================================
 // SEND TO TELEGRAM
 // ==========================================
 
-$('sendReview').onclick = () => {
+function sendToTelegram(button) {
 
   if (!valid()) return;
 
-  const button =
-    $('sendReview');
 
   button.disabled = true;
 
@@ -1256,8 +1215,8 @@ $('sendReview').onclick = () => {
   form.remove();
 
 
-  $('reviewStatus').textContent =
-    'Request sent to Telegram. Open your channel to confirm delivery.';
+  $('validation').textContent =
+    'Sent to Telegram. Open your channel to confirm delivery.';
 
 
   setTimeout(() => {
@@ -1266,7 +1225,7 @@ $('sendReview').onclick = () => {
 
   },4000);
 
-};
+}
 
 
 // ==========================================
