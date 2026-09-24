@@ -1,18 +1,692 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Game of Markets · Quick Publish</title><style>
-:root{font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif;color:#f4f6f8;background:#0b111b;--surface:#151e2b;--line:#354152;--muted:#a8b2c2;--lime:#d7ff68;--orange:#ffb66c}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 5% 0%,#172434 0,transparent 35%),#0b111b}button,input,textarea{font:inherit}button{cursor:pointer}.shell{max-width:1100px;margin:auto;padding:26px 28px 120px}.top{display:flex;justify-content:space-between;align-items:center;gap:24px;margin-bottom:46px}.brand{font-family:Georgia,serif;font-size:32px;font-weight:bold;letter-spacing:-1.2px;white-space:nowrap}.brand em{color:var(--lime);font-weight:normal}.destination,.ghost{background:#151e2a;color:#eaf0f6;border:1px solid var(--line);border-radius:15px;padding:12px 16px}.destination{display:flex;align-items:center;gap:12px}.tg{background:#2d9bd1;border-radius:50%;width:34px;height:34px;display:grid;place-items:center;color:white}.dot{width:7px;height:7px;background:#f6bf6c;border-radius:50%;display:inline-block}.destination small{display:block;color:var(--muted);font-size:12px;margin-top:2px}.heading{margin-bottom:30px}h1{font-family:Georgia,serif;font-size:clamp(36px,5vw,54px);letter-spacing:-1.5px;margin:0 0 8px}.heading p{color:var(--muted);margin:0;font-size:16px}.workspace{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(320px,.9fr);gap:32px;align-items:start}.label{display:block;color:#d9e0ea;font-size:14px;font-weight:600;margin:0 0 9px}.field{background:#151e2b;color:white;border:1px solid #485568;border-radius:12px;width:100%;padding:15px 17px;outline:none;min-height:54px}.field:focus{border-color:var(--lime);box-shadow:0 0 0 3px #d7ff6820}.grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:23px}.segments{display:flex;gap:4px;padding:4px;background:#151e2b;border:1px solid #3b4858;border-radius:12px;min-height:54px}.segments button{background:transparent;border:0;color:#dce3ec;border-radius:9px;flex:1;min-width:0;padding:10px 8px;font-weight:650}.segments button.selected{background:var(--lime);color:#111b20}.segments.action button[data-value=SELL].selected{background:#f2b26e}.expiry{display:flex;gap:8px;overflow:auto;padding-bottom:2px}.expiry button{border:1px solid var(--line);border-radius:10px;background:#151e2b;color:#e9eef4;padding:13px 15px;white-space:nowrap}.expiry button.selected{background:var(--lime);color:#111b20;font-weight:700}.details{margin-top:25px;border:1px solid var(--line);background:#111a26;border-radius:15px;padding:18px}.details summary{cursor:pointer;font-weight:650}.details .grid{margin-top:19px}.details textarea{resize:vertical;min-height:92px}.preview-title{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px}.preview-title h2{font-size:20px;margin:0}.preview{background:linear-gradient(135deg,#182432,#131c29);border:1px solid #445164;border-radius:18px;padding:23px;white-space:pre-wrap;line-height:1.55;overflow-wrap:anywhere;min-height:350px}.preview strong{color:var(--lime)}.preview .muted{color:#b9c2d1}.preview a{color:#86bcff}.footer-note{font-size:12px;color:#99a5b5;margin-top:12px}.actions{position:sticky;bottom:0;background:linear-gradient(transparent,#0b111b 20%);padding:24px 0 8px;margin-top:14px}.primary{border:0;border-radius:12px;background:var(--lime);color:#111820;font-size:17px;font-weight:760;padding:16px 22px;width:100%}.primary:hover{background:#c6f255}.secondary{border:1px solid var(--line);background:#1a2634;color:white;border-radius:10px;padding:12px 16px}.row{display:flex;gap:10px;align-items:center}.modal-backdrop{position:fixed;inset:0;background:#04080dcc;display:none;align-items:center;justify-content:center;padding:20px;z-index:5}.modal-backdrop.open{display:flex}.modal{width:min(540px,100%);max-height:90vh;overflow:auto;background:#172230;border:1px solid #455367;border-radius:20px;padding:25px;box-shadow:0 30px 80px #0009}.modal h2{margin:0 0 10px;font-family:Georgia,serif;font-size:27px}.modal p{color:#b8c3d1}.modal .field{margin-bottom:16px}.modal .row{justify-content:flex-end}.modal .primary{width:auto}.review-text{white-space:pre-wrap;background:#0f1721;border:1px solid var(--line);border-radius:12px;padding:16px;max-height:300px;overflow:auto;font-size:13px;line-height:1.55}.error{color:#ffb699;font-size:13px;min-height:20px;margin-top:7px}.status{color:#d7ff68;font-size:13px;min-height:20px}.hint{font-size:12px;color:#91a0b2;margin-top:7px}a{color:#8dbdfc}@media(max-width:760px){.shell{padding:20px 17px 110px}.top{margin-bottom:42px;align-items:flex-start}.brand{font-size:27px}.destination{padding:8px 10px;font-size:0}.destination span:not(.tg){display:none}.destination .tg{width:31px;height:31px;font-size:16px}.workspace{display:block}.preview-side{margin-top:30px}.grid{gap:14px}.preview{min-height:0}.actions{position:fixed;bottom:0;left:0;right:0;padding:20px 17px 16px}.heading p{font-size:14px}.expiry button{padding:11px}.details .grid{grid-template-columns:1fr 1fr}.details .grid label:last-child{grid-column:1/-1}}@media(max-width:380px){.grid{grid-template-columns:1fr}.details .grid{grid-template-columns:1fr}.details .grid label:last-child{grid-column:auto}}
-</style></head><body><main class="shell"><header class="top"><div class="brand">Game <em>of</em> Markets</div><button class="destination" id="settingsBtn" title="Settings"><span class="tg">➤</span><span><b>Telegram destination</b><small><i class="dot"></i> Direct post · Configure bot</small></span><span>⌄</span></button></header><div class="heading"><h1>New market update</h1><p>Prepare an options analysis post for your Telegram channel.</p></div><div class="workspace"><section><label class="label" for="symbol">Search F&amp;O stock</label><input class="field" id="symbol" list="symbols" value="RELIANCE" autocomplete="off" placeholder="Type a stock symbol"><datalist id="symbols"><option value="RELIANCE"><option value="HDFCBANK"><option value="ICICIBANK"><option value="SBIN"><option value="TCS"><option value="INFY"><option value="AXISBANK"><option value="TATAMOTORS"><option value="BHARTIARTL"><option value="NIFTY"><option value="BANKNIFTY"></datalist><div class="hint">Sample shortcuts; verify current F&amp;O eligibility and contract details before publishing.</div><div class="grid"><div><span class="label">Expiry</span><div class="expiry" id="expiries"></div></div><label><span class="label">Strike price</span><input class="field" id="strike" type="number" inputmode="decimal" min="0" step="0.05" value="2950" placeholder="e.g. 2950"></label></div><div class="grid"><div><span class="label">Option type</span><div class="segments" data-group="type"><button class="selected" data-value="CE">CE</button><button data-value="PE">PE</button></div></div><div><span class="label">Action</span><div class="segments action" data-group="action"><button class="selected" data-value="BUY">BUY</button><button data-value="SELL">SELL</button></div></div></div><details class="details"><summary>Additional details <span style="color:#9fabbd;font-weight:400">(optional)</span></summary><div class="grid"><label><span class="label">Entry premium (₹)</span><input class="field" id="entry" type="number" inputmode="decimal" min="0" step="0.05" placeholder="e.g. 42"></label><label><span class="label">Invalidation premium (₹)</span><input class="field" id="invalidation" type="number" inputmode="decimal" min="0" step="0.05" placeholder="e.g. 28"></label><label><span class="label">Analysis note</span><textarea class="field" id="note" maxlength="600" placeholder="What is the setup and what would invalidate it?"></textarea></label></div></details><div class="error" id="validation"></div></section><aside class="preview-side"><div class="preview-title"><h2>Post preview</h2><button class="ghost" id="copyBtn">Copy text</button></div><div class="preview" id="preview"></div><div class="footer-note">Direct bot posting from this browser. Telegram does not provide a readable delivery receipt here; verify the channel after sending.</div><div class="actions"><button class="primary" id="reviewBtn">Review &amp; publish →</button></div></aside></div></main><div class="modal-backdrop" id="settingsModal" role="dialog" aria-modal="true" aria-labelledby="settingsTitle"><div class="modal"><h2 id="settingsTitle">Publishing settings</h2><p>Enter your bot token and channel username. The token stays in this browser tab only and is never written into this HTML file or GitHub.</p><label class="label" for="botToken">Bot token from @BotFather</label><input class="field" id="botToken" type="password" autocomplete="off" placeholder="123456789:AA..."><label class="label" for="channelId">Channel username or chat ID</label><input class="field" id="channelId" autocomplete="off" placeholder="@gameof_markets"><label class="label" for="disclaimerUrl">Public disclaimer URL</label><input class="field" id="disclaimerUrl" type="url" placeholder="https://yourname.github.io/disclaimer/"><div class="hint">Only the channel and disclaimer URL are saved in this browser. Re-enter the bot token after opening a new tab.</div><div class="error" id="settingsError"></div><div class="row"><button class="secondary close">Cancel</button><button class="primary" id="saveSettings">Save settings</button></div></div></div><div class="modal-backdrop" id="reviewModal" role="dialog" aria-modal="true" aria-labelledby="reviewTitle"><div class="modal"><h2 id="reviewTitle">Review your post</h2><p>Check the stock, expiry, strike and action before sharing.</p><div class="review-text" id="reviewText"></div><p class="status" id="reviewStatus"></p><div class="row"><button class="secondary close">Back to edit</button><button class="secondary" id="copyReview">Copy</button><button class="primary" id="sendReview">Send to Telegram</button></div></div></div><script>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Game of Markets · Quick Publish</title>
+
+<style>
+:root{
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif;
+  color:#f4f6f8;
+  background:#0b111b;
+  --surface:#151e2b;
+  --line:#354152;
+  --muted:#a8b2c2;
+  --lime:#d7ff68;
+  --orange:#ffb66c;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:radial-gradient(circle at 5% 0%,#172434 0,transparent 35%),#0b111b;
+}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+
+.shell{
+  max-width:1100px;
+  margin:auto;
+  padding:26px 28px 120px;
+}
+.top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:24px;
+  margin-bottom:46px;
+}
+.brand{
+  font-family:Georgia,serif;
+  font-size:32px;
+  font-weight:bold;
+  letter-spacing:-1.2px;
+  white-space:nowrap;
+}
+.brand em{
+  color:var(--lime);
+  font-weight:normal;
+}
+.destination,.ghost{
+  background:#151e2a;
+  color:#eaf0f6;
+  border:1px solid var(--line);
+  border-radius:15px;
+  padding:12px 16px;
+}
+.destination{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+.tg{
+  background:#2d9bd1;
+  border-radius:50%;
+  width:34px;
+  height:34px;
+  display:grid;
+  place-items:center;
+  color:white;
+}
+.dot{
+  width:7px;
+  height:7px;
+  background:#f6bf6c;
+  border-radius:50%;
+  display:inline-block;
+}
+.destination small{
+  display:block;
+  color:var(--muted);
+  font-size:12px;
+  margin-top:2px;
+}
+.heading{margin-bottom:30px}
+h1{
+  font-family:Georgia,serif;
+  font-size:clamp(36px,5vw,54px);
+  letter-spacing:-1.5px;
+  margin:0 0 8px;
+}
+.heading p{
+  color:var(--muted);
+  margin:0;
+  font-size:16px;
+}
+.workspace{
+  display:grid;
+  grid-template-columns:minmax(0,1.1fr) minmax(320px,.9fr);
+  gap:32px;
+  align-items:start;
+}
+.label{
+  display:block;
+  color:#d9e0ea;
+  font-size:14px;
+  font-weight:600;
+  margin:0 0 9px;
+}
+.field{
+  background:#151e2b;
+  color:white;
+  border:1px solid #485568;
+  border-radius:12px;
+  width:100%;
+  padding:15px 17px;
+  outline:none;
+  min-height:54px;
+}
+.field:focus{
+  border-color:var(--lime);
+  box-shadow:0 0 0 3px #d7ff6820;
+}
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+  margin-top:23px;
+}
+.segments{
+  display:flex;
+  gap:4px;
+  padding:4px;
+  background:#151e2b;
+  border:1px solid #3b4858;
+  border-radius:12px;
+  min-height:54px;
+}
+.segments button{
+  background:transparent;
+  border:0;
+  color:#dce3ec;
+  border-radius:9px;
+  flex:1;
+  min-width:0;
+  padding:10px 8px;
+  font-weight:650;
+}
+.segments button.selected{
+  background:var(--lime);
+  color:#111b20;
+}
+.segments.action button[data-value="SELL"].selected{
+  background:var(--orange);
+}
+.instrument{
+  margin-bottom:25px;
+}
+.instrument .segments button{
+  padding:13px 8px;
+}
+.hint{
+  font-size:12px;
+  color:#91a0b2;
+  margin-top:7px;
+}
+.hidden{display:none!important}
+.preview-title{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  margin-bottom:14px;
+}
+.preview-title h2{
+  font-size:20px;
+  margin:0;
+}
+.preview{
+  background:linear-gradient(135deg,#182432,#131c29);
+  border:1px solid #445164;
+  border-radius:18px;
+  padding:23px;
+  white-space:pre-wrap;
+  line-height:1.55;
+  overflow-wrap:anywhere;
+  min-height:350px;
+}
+.footer-note{
+  font-size:12px;
+  color:#99a5b5;
+  margin-top:12px;
+}
+.actions{
+  position:sticky;
+  bottom:0;
+  background:linear-gradient(transparent,#0b111b 20%);
+  padding:24px 0 8px;
+  margin-top:14px;
+}
+.primary{
+  border:0;
+  border-radius:12px;
+  background:var(--lime);
+  color:#111820;
+  font-size:17px;
+  font-weight:760;
+  padding:16px 22px;
+  width:100%;
+}
+.primary:hover{background:#c6f255}
+.secondary{
+  border:1px solid var(--line);
+  background:#1a2634;
+  color:white;
+  border-radius:10px;
+  padding:12px 16px;
+}
+.row{
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+.modal-backdrop{
+  position:fixed;
+  inset:0;
+  background:#04080dcc;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  z-index:5;
+}
+.modal-backdrop.open{display:flex}
+.modal{
+  width:min(540px,100%);
+  max-height:90vh;
+  overflow:auto;
+  background:#172230;
+  border:1px solid #455367;
+  border-radius:20px;
+  padding:25px;
+  box-shadow:0 30px 80px #0009;
+}
+.modal h2{
+  margin:0 0 10px;
+  font-family:Georgia,serif;
+  font-size:27px;
+}
+.modal p{color:#b8c3d1}
+.modal .field{margin-bottom:16px}
+.modal .row{justify-content:flex-end}
+.modal .primary{width:auto}
+.review-text{
+  white-space:pre-wrap;
+  background:#0f1721;
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:16px;
+  max-height:360px;
+  overflow:auto;
+  font-size:13px;
+  line-height:1.55;
+}
+.error{
+  color:#ffb699;
+  font-size:13px;
+  min-height:20px;
+  margin-top:15px;
+}
+.status{
+  color:#d7ff68;
+  font-size:13px;
+  min-height:20px;
+}
+
+@media(max-width:760px){
+  .shell{padding:20px 17px 110px}
+  .top{margin-bottom:42px;align-items:flex-start}
+  .brand{font-size:27px}
+  .destination{padding:8px 10px;font-size:0}
+  .destination span:not(.tg){display:none}
+  .destination .tg{width:31px;height:31px;font-size:16px}
+  .workspace{display:block}
+  .preview-side{margin-top:30px}
+  .grid{gap:14px}
+  .preview{min-height:0}
+  .actions{
+    position:fixed;
+    bottom:0;
+    left:0;
+    right:0;
+    padding:20px 17px 16px;
+  }
+  .heading p{font-size:14px}
+}
+@media(max-width:420px){
+  .grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+
+<body>
+
+<main class="shell">
+
+<header class="top">
+  <div class="brand">Game <em>of</em> Markets</div>
+
+  <button class="destination" id="settingsBtn" title="Settings">
+    <span class="tg">➤</span>
+    <span>
+      <b>Telegram destination</b>
+      <small><i class="dot"></i> Direct post · Configure bot</small>
+    </span>
+    <span>⌄</span>
+  </button>
+</header>
+
+<div class="heading">
+  <h1>New market update</h1>
+  <p>Prepare your market update and publish it directly to Telegram.</p>
+</div>
+
+<div class="workspace">
+
+<section>
+
+  <!-- INSTRUMENT -->
+  <div class="instrument">
+    <span class="label">Instrument type</span>
+
+    <div class="segments" data-group="instrument">
+      <button class="selected" data-value="OPTIONS">OPTIONS</button>
+      <button data-value="FUTURES">FUTURES</button>
+      <button data-value="SWING">SWING</button>
+    </div>
+  </div>
+
+  <!-- SYMBOL -->
+  <label class="label" for="symbol">Stock / Index</label>
+
+  <input
+    class="field"
+    id="symbol"
+    list="symbols"
+    value="RELIANCE"
+    autocomplete="off"
+    placeholder="e.g. RELIANCE"
+  >
+
+  <datalist id="symbols">
+    <option value="RELIANCE">
+    <option value="HDFCBANK">
+    <option value="ICICIBANK">
+    <option value="SBIN">
+    <option value="TCS">
+    <option value="INFY">
+    <option value="AXISBANK">
+    <option value="TATAMOTORS">
+    <option value="BHARTIARTL">
+    <option value="NIFTY">
+    <option value="BANKNIFTY">
+    <option value="SENSEX">
+  </datalist>
+
+  <div class="hint">
+    Verify the current contract and market details before publishing.
+  </div>
+
+  <!-- OPTIONS -->
+  <div id="optionsFields">
+
+    <div class="grid">
+
+      <div>
+        <span class="label">Expiry type</span>
+
+        <div class="segments" data-group="expiryType">
+          <button class="selected" data-value="Weekly">Weekly</button>
+          <button data-value="Monthly">Monthly</button>
+        </div>
+      </div>
+
+      <label>
+        <span class="label">Strike price</span>
+        <input
+          class="field"
+          id="strike"
+          type="number"
+          inputmode="decimal"
+          min="0"
+          step="0.05"
+          value="2950"
+          placeholder="e.g. 2950"
+        >
+      </label>
+
+    </div>
+
+    <div class="grid">
+
+      <div>
+        <span class="label">Option type</span>
+
+        <div class="segments" data-group="optionType">
+          <button class="selected" data-value="CE">CE</button>
+          <button data-value="PE">PE</button>
+        </div>
+      </div>
+
+      <div>
+        <span class="label">Action</span>
+
+        <div class="segments action" data-group="action">
+          <button class="selected" data-value="BUY">BUY</button>
+          <button data-value="SELL">SELL</button>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- FUTURES -->
+  <div id="futureFields" class="hidden">
+
+    <div class="grid">
+
+      <label>
+        <span class="label">Contract month</span>
+
+        <select class="field" id="contractMonth">
+          <option>JAN</option>
+          <option>FEB</option>
+          <option>MAR</option>
+          <option>APR</option>
+          <option>MAY</option>
+          <option>JUN</option>
+          <option>JUL</option>
+          <option>AUG</option>
+          <option selected>SEP</option>
+          <option>OCT</option>
+          <option>NOV</option>
+          <option>DEC</option>
+        </select>
+      </label>
+
+      <div>
+        <span class="label">Action</span>
+
+        <div class="segments action" data-group="action">
+          <button class="selected" data-value="BUY">BUY</button>
+          <button data-value="SELL">SELL</button>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- SWING -->
+  <div id="swingFields" class="hidden">
+
+    <div class="grid">
+
+      <div>
+        <span class="label">Action</span>
+
+        <div class="segments action" data-group="action">
+          <button class="selected" data-value="BUY">BUY</button>
+          <button data-value="SELL">SELL</button>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- COMMON PRICE DETAILS -->
+  <div class="grid">
+
+    <label>
+      <span class="label" id="entryLabel">Premium price</span>
+
+      <input
+        class="field"
+        id="entry"
+        type="number"
+        inputmode="decimal"
+        min="0"
+        step="0.05"
+        value="10"
+        placeholder="e.g. 10"
+      >
+    </label>
+
+    <label>
+      <span class="label">Target 1</span>
+
+      <input
+        class="field"
+        id="target1"
+        type="number"
+        inputmode="decimal"
+        min="0"
+        step="0.05"
+        value="11"
+        placeholder="e.g. 11"
+      >
+    </label>
+
+  </div>
+
+  <div class="grid">
+
+    <label>
+      <span class="label">Target 2</span>
+
+      <input
+        class="field"
+        id="target2"
+        type="number"
+        inputmode="decimal"
+        min="0"
+        step="0.05"
+        value="12"
+        placeholder="e.g. 12"
+      >
+    </label>
+
+    <label>
+      <span class="label">Stop Loss</span>
+
+      <input
+        class="field"
+        id="stopLoss"
+        type="number"
+        inputmode="decimal"
+        min="0"
+        step="0.05"
+        value="9"
+        placeholder="e.g. 9"
+      >
+    </label>
+
+  </div>
+
+  <div class="error" id="validation"></div>
+
+</section>
+
+<!-- PREVIEW -->
+<aside class="preview-side">
+
+  <div class="preview-title">
+    <h2>Post preview</h2>
+    <button class="ghost" id="copyBtn">Copy text</button>
+  </div>
+
+  <div class="preview" id="preview"></div>
+
+  <div class="footer-note">
+    Direct bot posting from this browser. Verify the Telegram channel after sending.
+  </div>
+
+  <div class="actions">
+    <button class="primary" id="reviewBtn">
+      Review &amp; publish →
+    </button>
+  </div>
+
+</aside>
+
+</div>
+</main>
+
+
+<!-- SETTINGS MODAL -->
+<div
+  class="modal-backdrop"
+  id="settingsModal"
+  role="dialog"
+  aria-modal="true"
+>
+
+<div class="modal">
+
+<h2>Publishing settings</h2>
+
+<p>
+Settings are saved in this browser.
+Do not use this setup on a shared device.
+</p>
+
+<label class="label" for="botToken">
+  Bot token from @BotFather
+</label>
+
+<input
+  class="field"
+  id="botToken"
+  type="password"
+  autocomplete="off"
+  placeholder="123456789:AA..."
+>
+
+<label class="label" for="channelId">
+  Channel username or chat ID
+</label>
+
+<input
+  class="field"
+  id="channelId"
+  autocomplete="off"
+  placeholder="@gomtesting"
+>
+
+<label class="label" for="disclaimerUrl">
+  Public disclaimer URL
+</label>
+
+<input
+  class="field"
+  id="disclaimerUrl"
+  type="url"
+  placeholder="https://ajitmca.github.io/gom/"
+>
+
+<div class="hint">
+  Bot token, channel and disclaimer URL are stored only in this browser's local storage.
+</div>
+
+<div class="error" id="settingsError"></div>
+
+<div class="row">
+  <button class="secondary close">Cancel</button>
+  <button class="primary" id="saveSettings">Save settings</button>
+</div>
+
+</div>
+</div>
+
+
+<!-- REVIEW MODAL -->
+<div
+  class="modal-backdrop"
+  id="reviewModal"
+  role="dialog"
+  aria-modal="true"
+>
+
+<div class="modal">
+
+<h2>Review your post</h2>
+
+<p>
+Check the instrument, action, entry, targets and stop loss before sharing.
+</p>
+
+<div class="review-text" id="reviewText"></div>
+
+<p class="status" id="reviewStatus"></p>
+
+<div class="row">
+  <button class="secondary close">Back to edit</button>
+  <button class="secondary" id="copyReview">Copy</button>
+  <button class="primary" id="sendReview">Send to Telegram</button>
+</div>
+
+</div>
+</div>
+
+
+<script>
+
 const $ = id => document.getElementById(id);
 
 const state = {
-  type: 'CE',
-  action: 'BUY',
-  expiry: ''
+  instrument: 'OPTIONS',
+  expiryType: 'Weekly',
+  optionType: 'CE',
+  action: 'BUY'
 };
 
-// ===============================
+
+// ==========================================
 // SAVED SETTINGS
-// ===============================
+// ==========================================
+
 let disclaimerUrl =
   localStorage.getItem('gom_disclaimer_url') ||
   'https://ajitmca.github.io/gom/';
@@ -29,232 +703,362 @@ $('channelId').value = channelId;
 $('disclaimerUrl').value = disclaimerUrl;
 
 
-// ===============================
-// EXPIRY DATES
-// ===============================
-const fmt = d =>
-  d.toLocaleDateString('en-IN', {
-    day: '2-digit',
-    month: 'short',
-    year: 'numeric'
-  });
-
-const expiries = [];
-
-let day = new Date();
-day.setDate(day.getDate() + 1);
-
-while (expiries.length < 4) {
-  if (day.getDay() === 4) {
-    expiries.push(new Date(day));
-  }
-
-  day.setDate(day.getDate() + 1);
-}
-
-state.expiry = fmt(expiries[0]);
-
-$('expiries').innerHTML = expiries
-  .map(
-    (d, i) =>
-      `<button
-        data-expiry="${fmt(d)}"
-        class="${i === 0 ? 'selected' : ''}">
-        ${d.toLocaleDateString('en-IN', {
-          day: '2-digit',
-          month: 'short'
-        })}
-      </button>`
-  )
-  .join('');
-
-$('expiries').addEventListener('click', e => {
-  const b = e.target.closest('button');
-
-  if (!b) return;
-
-  state.expiry = b.dataset.expiry;
-
-  $('expiries')
-    .querySelectorAll('button')
-    .forEach(x =>
-      x.classList.toggle('selected', x === b)
-    );
-
-  render();
-});
-
-
-// ===============================
-// CE / PE + BUY / SELL
-// ===============================
-document.querySelectorAll('.segments').forEach(group => {
-  group.addEventListener('click', e => {
-    const button = e.target.closest('button');
-
-    if (!button) return;
-
-    state[group.dataset.group] =
-      button.dataset.value;
-
-    group
-      .querySelectorAll('button')
-      .forEach(x =>
-        x.classList.toggle(
-          'selected',
-          x === button
-        )
-      );
-
-    render();
-  });
-});
-
+// ==========================================
+// HELPERS
+// ==========================================
 
 function clean(value) {
   return String(value || '').trim();
 }
 
 
-// ===============================
-// TELEGRAM MESSAGE
-// ===============================
-function message() {
-  const symbol = clean($('symbol').value).toUpperCase();
-  const strike = clean($('strike').value);
-  const entry = clean($('entry').value);
-  const invalidation = clean($('invalidation').value);
-  const note = clean($('note').value);
+// ==========================================
+// SEGMENT BUTTONS
+// ==========================================
 
-  const sections = [];
+document.querySelectorAll('.segments').forEach(group => {
 
-  // Header
-  sections.push(
-    `Game of Markets\n\n` +
-    `📊 ${symbol || '[STOCK]'} · ${state.expiry} · ${strike || '[STRIKE]'} ${state.type}\n` +
-    `Selected action: ${state.action}`
-  );
+  group.addEventListener('click', e => {
 
-  // Optional analysis/details
-  const details = [];
+    const button = e.target.closest('button');
 
-  if (note) {
-    details.push(`Analysis: ${note}`);
-  }
+    if (!button) return;
 
-  if (entry) {
-    details.push(`Reference premium: ₹${entry}`);
-  }
+    const groupName = group.dataset.group;
+    const value = button.dataset.value;
 
-  if (invalidation) {
-    details.push(`Invalidation premium: ₹${invalidation}`);
-  }
+    state[groupName] = value;
 
-  if (details.length) {
-    sections.push(details.join('\n'));
-  }
+    /*
+      Action appears in multiple instrument sections.
+      Keep all BUY/SELL controls synchronized.
+    */
+    if (groupName === 'action') {
 
-  // Disclaimer
-  sections.push(
-    `Educational market analysis.\n` +
-    `I am not a SEBI-registered adviser or research analyst.\n` +
-    `This is not personalized investment advice.\n` +
-    `Make your own trading decisions and assess risk.`
-  );
+      document
+        .querySelectorAll('.segments[data-group="action"] button')
+        .forEach(x => {
+          x.classList.toggle(
+            'selected',
+            x.dataset.value === value
+          );
+        });
 
-  // Full disclaimer URL
-  sections.push(
-    disclaimerUrl
-      ? `Full disclaimer:\n${disclaimerUrl}`
-      : `Full disclaimer: [Add public GitHub link in Settings]`
-  );
+    } else {
 
-  return sections.join('\n\n');
-}
+      group
+        .querySelectorAll('button')
+        .forEach(x => {
+          x.classList.toggle(
+            'selected',
+            x === button
+          );
+        });
+    }
 
-
-// ===============================
-// PREVIEW
-// ===============================
-function render() {
-
-  const text = message();
-
-  $('preview').textContent = text;
-
-  $('reviewText').textContent = text;
-}
-
-
-// ===============================
-// VALIDATION
-// ===============================
-function valid() {
-
-  let error = '';
-
-  if (!clean($('symbol').value)) {
-
-    error =
-      'Enter a stock or index symbol.';
-
-  } else if (
-    !Number($('strike').value) ||
-    Number($('strike').value) <= 0
-  ) {
-
-    error =
-      'Enter a valid strike price.';
-
-  } else if (!disclaimerUrl) {
-
-    error =
-      'Add your public GitHub disclaimer URL in Settings.';
-
-  } else if (!channelId || !botToken) {
-
-    error =
-      'Add your bot token and channel in Settings.';
-  }
-
-  $('validation').textContent = error;
-
-  return !error;
-}
-
-
-// ===============================
-// LIVE UPDATE
-// ===============================
-[
-  'symbol',
-  'strike',
-  'entry',
-  'invalidation',
-  'note'
-].forEach(id => {
-
-  $(id).addEventListener('input', () => {
+    if (groupName === 'instrument') {
+      updateInstrumentUI();
+    }
 
     render();
 
-    $('validation').textContent = '';
   });
 
 });
 
 
-// ===============================
+// ==========================================
+// INSTRUMENT UI
+// ==========================================
+
+function updateInstrumentUI() {
+
+  $('optionsFields').classList.toggle(
+    'hidden',
+    state.instrument !== 'OPTIONS'
+  );
+
+  $('futureFields').classList.toggle(
+    'hidden',
+    state.instrument !== 'FUTURES'
+  );
+
+  $('swingFields').classList.toggle(
+    'hidden',
+    state.instrument !== 'SWING'
+  );
+
+  if (state.instrument === 'OPTIONS') {
+
+    $('entryLabel').textContent = 'Premium price';
+
+    if (!$('entry').value) $('entry').value = '10';
+    if (!$('target1').value) $('target1').value = '11';
+    if (!$('target2').value) $('target2').value = '12';
+    if (!$('stopLoss').value) $('stopLoss').value = '9';
+
+  } else {
+
+    $('entryLabel').textContent = 'Entry price';
+
+  }
+
+}
+
+
+// ==========================================
+// TELEGRAM MESSAGE
+// ==========================================
+
+function message() {
+
+  const symbol =
+    clean($('symbol').value).toUpperCase();
+
+  const strike =
+    clean($('strike').value);
+
+  const entry =
+    clean($('entry').value);
+
+  const target1 =
+    clean($('target1').value);
+
+  const target2 =
+    clean($('target2').value);
+
+  const stopLoss =
+    clean($('stopLoss').value);
+
+  let tradeLine = '';
+
+  // OPTIONS
+  if (state.instrument === 'OPTIONS') {
+
+    tradeLine =
+      `📊 ${state.action} ` +
+      `${symbol || '[STOCK]'} ` +
+      `${strike || '[STRIKE]'} ` +
+      `${state.optionType} ` +
+      `(${state.expiryType}) ` +
+      `at ${entry || '[PREMIUM]'}`;
+
+  }
+
+  // FUTURES
+  else if (state.instrument === 'FUTURES') {
+
+    const month =
+      clean($('contractMonth').value);
+
+    tradeLine =
+      `📊 ${state.action} ` +
+      `${symbol || '[STOCK]'} ` +
+      `${month} Future ` +
+      `at ${entry || '[ENTRY]'}`;
+
+  }
+
+  // SWING
+  else {
+
+    tradeLine =
+      `📊 SWING ${state.action} ` +
+      `${symbol || '[STOCK]'} ` +
+      `at ${entry || '[ENTRY]'}`;
+
+  }
+
+
+  const targetParts = [];
+
+  if (target1) targetParts.push(target1);
+  if (target2) targetParts.push(target2);
+
+  let targetLine = '     TARGET: ';
+
+  if (targetParts.length) {
+    targetLine += targetParts.join(' or ');
+  } else {
+    targetLine += '[TARGET]';
+  }
+
+  targetLine +=
+    ' or Trail SL at your own profit/risk';
+
+
+  const stopLine =
+    `     STOP LOSS: ${stopLoss || '[STOP LOSS]'}`;
+
+
+  const disclaimer =
+    [
+      'Disclaimer:',
+      'I am not a SEBI-registered adviser or research analyst.',
+      'This is not personalized investment advice.',
+      'Make your own trading decisions and assess risk.'
+    ].join('\n');
+
+
+  const fullDisclaimer =
+    disclaimerUrl
+      ? `Full disclaimer:\n${disclaimerUrl}`
+      : 'Full disclaimer: [Add public GitHub link in Settings]';
+
+
+  return [
+    'Game of Markets',
+    [
+      tradeLine,
+      targetLine,
+      stopLine
+    ].join('\n'),
+    disclaimer,
+    fullDisclaimer
+  ].join('\n\n');
+
+}
+
+
+// ==========================================
+// PREVIEW
+// ==========================================
+
+function render() {
+
+  const text = message();
+
+  $('preview').textContent = text;
+  $('reviewText').textContent = text;
+
+}
+
+
+// ==========================================
+// VALIDATION
+// ==========================================
+
+function valid() {
+
+  let error = '';
+
+  const symbol =
+    clean($('symbol').value);
+
+  const entry =
+    Number($('entry').value);
+
+  const target1 =
+    Number($('target1').value);
+
+  const stopLoss =
+    Number($('stopLoss').value);
+
+
+  if (!symbol) {
+
+    error =
+      'Enter a stock or index symbol.';
+
+  }
+
+  else if (
+    state.instrument === 'OPTIONS' &&
+    (
+      !Number($('strike').value) ||
+      Number($('strike').value) <= 0
+    )
+  ) {
+
+    error =
+      'Enter a valid strike price.';
+
+  }
+
+  else if (!entry || entry <= 0) {
+
+    error =
+      state.instrument === 'OPTIONS'
+        ? 'Enter a valid premium price.'
+        : 'Enter a valid entry price.';
+
+  }
+
+  else if (!target1 || target1 <= 0) {
+
+    error =
+      'Enter at least Target 1.';
+
+  }
+
+  else if (!stopLoss || stopLoss <= 0) {
+
+    error =
+      'Enter a valid Stop Loss.';
+
+  }
+
+  else if (!disclaimerUrl) {
+
+    error =
+      'Add your public GitHub disclaimer URL in Settings.';
+
+  }
+
+  else if (!channelId || !botToken) {
+
+    error =
+      'Add your bot token and Telegram channel in Settings.';
+
+  }
+
+
+  $('validation').textContent = error;
+
+  return !error;
+
+}
+
+
+// ==========================================
+// LIVE PREVIEW
+// ==========================================
+
+[
+  'symbol',
+  'strike',
+  'entry',
+  'target1',
+  'target2',
+  'stopLoss',
+  'contractMonth'
+].forEach(id => {
+
+  $(id).addEventListener(
+    id === 'contractMonth' ? 'change' : 'input',
+    () => {
+
+      render();
+      $('validation').textContent = '';
+
+    }
+  );
+
+});
+
+
+// ==========================================
 // SETTINGS
-// ===============================
+// ==========================================
+
 $('settingsBtn').onclick = () => {
 
-  // Load saved settings every time
   $('botToken').value = botToken;
   $('channelId').value = channelId;
   $('disclaimerUrl').value = disclaimerUrl;
 
   $('settingsModal').classList.add('open');
+
 };
 
 
@@ -271,14 +1075,12 @@ $('saveSettings').onclick = () => {
 
   try {
 
-    // Validate Telegram channel
     if (
       !/^(@[A-Za-z0-9_]{5,}|-?\d{5,})$/.test(channel)
     ) {
       throw Error('channel');
     }
 
-    // Validate bot token
     if (
       !token ||
       !/^\d+:[A-Za-z0-9_-]+$/.test(token)
@@ -286,7 +1088,6 @@ $('saveSettings').onclick = () => {
       throw Error('token');
     }
 
-    // Validate disclaimer URL
     const url = new URL(value);
 
     if (
@@ -299,15 +1100,11 @@ $('saveSettings').onclick = () => {
     }
 
 
-    // SAVE VALUES
     disclaimerUrl = value;
     channelId = channel;
     botToken = token;
 
 
-    // ===============================
-    // ONE-TIME BROWSER STORAGE
-    // ===============================
     localStorage.setItem(
       'gom_bot_token',
       botToken
@@ -330,20 +1127,22 @@ $('saveSettings').onclick = () => {
       .classList.remove('open');
 
     render();
-
     valid();
 
   } catch (e) {
 
     $('settingsError').textContent =
       'Check the channel (@username or numeric ID), bot token, and public HTTPS GitHub URL.';
+
   }
+
 };
 
 
-// ===============================
+// ==========================================
 // REVIEW
-// ===============================
+// ==========================================
+
 $('reviewBtn').onclick = () => {
 
   if (!valid()) return;
@@ -351,15 +1150,17 @@ $('reviewBtn').onclick = () => {
   render();
 
   $('reviewStatus').textContent =
-    'Ready to send. Check the contract and action once more.';
+    'Ready to send. Check all trade details once more.';
 
   $('reviewModal').classList.add('open');
+
 };
 
 
-// ===============================
-// COPY MESSAGE
-// ===============================
+// ==========================================
+// COPY
+// ==========================================
+
 async function copy() {
 
   try {
@@ -372,28 +1173,32 @@ async function copy() {
       'Copied ✓';
 
     $('reviewStatus').textContent =
-      'Copied. Paste this into your Telegram channel.';
+      'Copied to clipboard.';
 
     setTimeout(() => {
+
       $('copyBtn').textContent =
         'Copy text';
+
     }, 2000);
 
   } catch {
 
     $('reviewStatus').textContent =
       'Clipboard unavailable. Select and copy the preview text.';
+
   }
+
 }
 
 $('copyBtn').onclick = copy;
-
 $('copyReview').onclick = copy;
 
 
-// ===============================
+// ==========================================
 // SEND TO TELEGRAM
-// ===============================
+// ==========================================
+
 $('sendReview').onclick = () => {
 
   if (!valid()) return;
@@ -428,11 +1233,12 @@ $('sendReview').onclick = () => {
     text: message(),
 
     disable_web_page_preview: 'true'
+
   };
 
 
   for (
-    const [key, value]
+    const [key,value]
     of Object.entries(telegramData)
   ) {
 
@@ -440,12 +1246,11 @@ $('sendReview').onclick = () => {
       document.createElement('input');
 
     input.type = 'hidden';
-
     input.name = key;
-
     input.value = value;
 
     form.append(input);
+
   }
 
 
@@ -464,13 +1269,15 @@ $('sendReview').onclick = () => {
 
     button.disabled = false;
 
-  }, 4000);
+  },4000);
+
 };
 
 
-// ===============================
+// ==========================================
 // CLOSE MODALS
-// ===============================
+// ==========================================
+
 document
   .querySelectorAll('.close')
   .forEach(button => {
@@ -480,6 +1287,7 @@ document
       button
         .closest('.modal-backdrop')
         .classList.remove('open');
+
     };
 
   });
@@ -510,19 +1318,32 @@ document.addEventListener(
     if (e.key === 'Escape') {
 
       document
-        .querySelectorAll(
-          '.modal-backdrop'
-        )
+        .querySelectorAll('.modal-backdrop')
         .forEach(modal =>
           modal.classList.remove('open')
         );
+
     }
 
   }
 );
 
 
-// INITIAL PREVIEW
+// ==========================================
+// INITIAL
+// ==========================================
+
+updateInstrumentUI();
 render();
 
-</script><iframe id="telegramResult" name="telegramResult" title="Telegram response" hidden></iframe></body></html>
+</script>
+
+<iframe
+  id="telegramResult"
+  name="telegramResult"
+  title="Telegram response"
+  hidden>
+</iframe>
+
+</body>
+</html>
