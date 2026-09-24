@@ -623,7 +623,7 @@ Do not use this setup on a shared device.
   class="field"
   id="disclaimerUrl"
   type="url"
-  placeholder="https://ajitmca.github.io/gom/"
+  placeholder="https://game-of-markets-disclaimer.ajitmca89.workers.dev/"
 >
 
 <div class="hint">
@@ -689,7 +689,7 @@ const state = {
 
 let disclaimerUrl =
   localStorage.getItem('gom_disclaimer_url') ||
-  'https://ajitmca.github.io/gom/';
+  'https://game-of-markets-disclaimer.ajitmca89.workers.dev/';
 
 let botToken =
   localStorage.getItem('gom_bot_token') || '';
@@ -1090,14 +1090,9 @@ $('saveSettings').onclick = () => {
 
     const url = new URL(value);
 
-    if (
-      url.protocol !== 'https:' ||
-      !/(^|\.)github\.io$|(^|\.)github\.com$/.test(
-        url.hostname
-      )
-    ) {
-      throw Error('url');
-    }
+if (url.protocol !== 'https:') {
+  throw Error('url');
+}
 
 
     disclaimerUrl = value;
