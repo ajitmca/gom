@@ -120,65 +120,56 @@ function clean(value) {
 // TELEGRAM MESSAGE
 // ===============================
 function message() {
+  const symbol = clean($('symbol').value).toUpperCase();
+  const strike = clean($('strike').value);
+  const entry = clean($('entry').value);
+  const invalidation = clean($('invalidation').value);
+  const note = clean($('note').value);
 
-  const symbol =
-    clean($('symbol').value).toUpperCase();
+  const sections = [];
 
-  const strike =
-    clean($('strike').value);
+  // Header
+  sections.push(
+    `Game of Markets\n\n` +
+    `📊 ${symbol || '[STOCK]'} · ${state.expiry} · ${strike || '[STRIKE]'} ${state.type}\n` +
+    `Selected action: ${state.action}`
+  );
 
-  const entry =
-    clean($('entry').value);
+  // Optional analysis/details
+  const details = [];
 
-  const invalidation =
-    clean($('invalidation').value);
+  if (note) {
+    details.push(`Analysis: ${note}`);
+  }
 
-  const note =
-    clean($('note').value);
+  if (entry) {
+    details.push(`Reference premium: ₹${entry}`);
+  }
 
+  if (invalidation) {
+    details.push(`Invalidation premium: ₹${invalidation}`);
+  }
 
-  const lines = [
+  if (details.length) {
+    sections.push(details.join('\n'));
+  }
 
-    'Game of Markets',
+  // Disclaimer
+  sections.push(
+    `Educational market analysis.\n` +
+    `I am not a SEBI-registered adviser or research analyst.\n` +
+    `This is not personalized investment advice.\n` +
+    `Make your own trading decisions and assess risk.`
+  );
 
-    '',
-
-    `📊 ${symbol || '[STOCK]'} · ${state.expiry} · ${strike || '[STRIKE]'} ${state.type}`,
-
-    `Selected action: ${state.action}`,
-
-    note
-      ? `\nAnalysis: ${note}`
-      : '',
-
-    entry
-      ? `Reference premium: ₹${entry}`
-      : '',
-
-    invalidation
-      ? `Invalidation premium: ₹${invalidation}`
-      : '',
-
-    '',
-
-    'Educational market analysis.',
-
-    '',
-
-    'I am not a SEBI-registered adviser or research analyst.',
-
-    'This is not personalized investment advice.',
-
-    'Make your own trading decisions and assess risk.',
-
-    '',
-
+  // Full disclaimer URL
+  sections.push(
     disclaimerUrl
       ? `Full disclaimer:\n${disclaimerUrl}`
-      : 'Full disclaimer: [Add public GitHub link in Settings]'
-  ];
+      : `Full disclaimer: [Add public GitHub link in Settings]`
+  );
 
-  return lines.join('\n');
+  return sections.join('\n\n');
 }
 
 
